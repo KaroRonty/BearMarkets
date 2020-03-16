@@ -3,6 +3,11 @@ library(dplyr)
 library(scales)
 library(lubridate)
 library(PerformanceAnalytics)
+library(tidyr)library(ggplot2)
+library(dplyr)
+library(scales)
+library(lubridate)
+library(PerformanceAnalytics)
 library(tidyr)
 library(kableExtra)
 library(stringr)
@@ -180,10 +185,15 @@ Blog post at: databasedinvesting.blogspot.com") +
 
 # Get stats of the bear markets
 stats <- rbind(`Mean fall` = percent(mean(bearmarkets$return)),
+               `Max fall` = percent(min(bearmarkets$return)),
                `Mean length in years` =
                  round(mean(bearmarkets$length) / 12, 2),
+               `Max length in years` =
+                 round(max(bearmarkets$length) / 12, 2),
                `Mean peak to trough length in years` =
-                 round(mean(bearmarkets$peaktotrough) / 12, 2))
+                 round(mean(bearmarkets$peaktotrough) / 12, 2),
+               `Max peak to trough length in years` =
+                 round(max(bearmarkets$peaktotrough) / 12, 2))
 
 # Format the stats
 stats %>% 
